@@ -1,7 +1,6 @@
 {
   "name": "throttle-batch",
   "version": "1.0.0",
-  "private": true,
   "description": "Throttle but do not discard calls, instead batch them and run all at once",
   "author": "futpib <futpib@gmail.com>",
   "license": "MIT",
