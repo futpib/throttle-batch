@@ -1,9 +1,9 @@
 
-export interface ThrottleBatchOptions<A, B> {
+export type ThrottleBatchOptions<A, B> = {
 	threshold?: number;
 	createInitialBatch?: () => B;
 	addArgumentsToBatch?: (batch: B, args: A) => B;
-}
+};
 
 export default function throttleBatch<A extends any[], B = Array<A[0]>>(f: (batch: B) => void, options: number | ThrottleBatchOptions<A, B> = {}): (...args: A) => void {
 	const {

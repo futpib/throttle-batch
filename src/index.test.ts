@@ -1,4 +1,4 @@
-import type { TestInterface } from 'ava'; // eslint-disable-line ava/use-test
+import type { TestInterface } from 'ava';
 import anyTest from 'ava';
 import sinon from 'sinon';
 
