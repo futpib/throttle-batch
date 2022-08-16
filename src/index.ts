@@ -35,14 +35,10 @@ export default function throttleBatch<A extends any[], B = Array<A[0]>>(f: (batc
 		} else {
 			clearTimeout(timeout!);
 			timeout = setTimeout(() => {
-				if (batch === undefined) {
-					return;
-				}
-
 				lastCallTime = Date.now();
 				const batch_ = batch;
 				batch = undefined;
-				f(batch_);
+				f(batch_!);
 			}, threshold);
 		}
 	};
