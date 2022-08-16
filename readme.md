@@ -2,6 +2,8 @@
 
 > Throttle, but do not discard calls, instead batch them and run all at once
 
+[![npm](https://shields.io/npm/v/throttle-batch)](https://www.npmjs.com/package/throttle-batch) [![Coverage Status](https://coveralls.io/repos/github/futpib/throttle-batch/badge.svg?branch=master)](https://coveralls.io/github/futpib/throttle-batch?branch=master)
+
 ## Example
 
 ```js
