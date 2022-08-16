@@ -99,3 +99,29 @@ test.serial('regular calls', async t => {
 	t.deepEqual(spy.thirdCall.firstArg, [ 4, 5, 6 ]);
 	t.deepEqual(spy.lastCall.firstArg, [ 7 ]);
 });
+
+test.serial('custom batch type', async t => {
+	const { clock } = t.context;
+	clock.restore();
+
+	const spy = sinon.spy();
+
+	const f = throttleBatch<[number], Set<number>>(spy, {
+		createInitialBatch: () => new Set(),
+		addArgumentsToBatch: (set, [ value ]) => new Set([ ...set, value ]),
+	});
+
+	f(0);
+	f(1);
+	f(2);
+	f(3);
+	f(2);
+
+	await new Promise(resolve => {
+		setTimeout(resolve, 10);
+	});
+
+	t.is(spy.callCount, 2);
+	t.deepEqual(spy.firstCall.firstArg, new Set([ 0 ]));
+	t.deepEqual(spy.secondCall.firstArg, new Set([ 1, 2, 3 ]));
+});
